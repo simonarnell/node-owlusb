@@ -1,0 +1,12 @@
+{
+  "name": "node-owlusb",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cp2102": "simonarnell/cp2102.git"
+  },
+  "type": "module"
+}
