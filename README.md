@@ -41,7 +41,7 @@ Purely speculating, you may be able to lash something together using [USBIP](htt
 - Add `node-owlusb` to your dependencies in package.json
 - Run `npm install` 
 - Use the following code snippet:
-```
+```javascript
 const OwlUSB = require('node-owlusb')
 
 const owlUSB = new OwlUSB();
@@ -49,6 +49,6 @@ owlUSB.on('live', (record) => console.log(JSON.stringify(record)))
 ```
 
 This should produce JSON similar to:
-```
+```json
 {"addr":0,"year":2021,"month":1,"day":17,"hour":10,"min":51,"cost":12.5,"amps":"1.89","isLiveData":true,"watts":"435","ah":"0.03","wh":"7.25"}
 ```
