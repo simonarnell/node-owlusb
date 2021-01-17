@@ -1,5 +1,5 @@
-const CP2102 = require('cp2102');
-const EventEmitter = require('events');
+import CP2102 from 'cp2102';
+import EventEmitter from 'events';
 
 const owlVendorId = 0x0fde, 
   cm160DeviceId = 0xca05,
@@ -41,7 +41,7 @@ const setup = [
     },
     data : (() => {
       let baudrateBuffer = Buffer.alloc(4);
-      baudrateBuffer.writeInt32LE(baudRate, 0, 4)
+      baudrateBuffer.writeInt32LE(baudRate)
       return baudrateBuffer
     })()
   },
@@ -60,11 +60,13 @@ const setup = [
 const volt = 230; 
 
 class OwlUSB extends EventEmitter {
+  connection: any;
+  last_valid_month: number;
   constructor() {
     super();
     this.connection = new CP2102(owlVendorId, cm160DeviceId, opts, setup);
     this.last_valid_month = 0;
-    this.connection.on('data', async (frame) => {
+    this.connection.on('data', async (frame : Buffer) => {
       let wordCount = frame.length / wordLength;
       for(let i = 0; i < wordCount; i++) {
         let word = frame.slice(i * wordLength, (i + 1) * wordLength)
@@ -74,15 +76,15 @@ class OwlUSB extends EventEmitter {
     this.connection.on('ready', () => console.log("connected"))
   }
 
-  processWord(word) {
+  processWord(word : Buffer) {
     if(Buffer.compare(word, frameCodes.ID) == 0) {
-      this.connection.write(Buffer.from([0x5a]), (err) => {
+      this.connection.write(Buffer.from([0x5a]), (err: any) => {
         if (err) {
           console.error('Error sending command:', err);
         }
       })
     } else if(Buffer.compare(word, frameCodes.WAIT) == 0) {
-      this.connection.write(Buffer.from([0xa5]), (err) => {
+      this.connection.write(Buffer.from([0xa5]), (err: any) => {
         if (err) {
           console.error('Error sending command:', err);
         }
@@ -120,8 +122,8 @@ class OwlUSB extends EventEmitter {
     }
   }
 
-  decodeWord(word) {
-    let data = {
+  decodeWord(word : Buffer) : Record {
+    let data : Record = {
       addr : 0,
       year : word[1]+2000,
       month : word[2],
@@ -130,15 +132,33 @@ class OwlUSB extends EventEmitter {
       min : word[5],
       cost : (word[6]+(word[7]<<8))/100.0,
       amps : (word[8]+(word[9]<<8))*0.07,
+      watts: 0,
+      ah: 0,
+      wh: 0,
       isLiveData : (word[0] == frameCodes.LIVE) ? true : false
     }
     data.watts = data.amps * volt 
-    data.ah = (data.amps/60).toFixed(2)
-    data.wh = (data.watts/60).toFixed(2)
-    data.amps = data.amps.toFixed(2)
-    data.watts = data.watts.toFixed(0)
+    data.ah = (data.amps/60)
+    data.wh = (data.watts/60)
+    data.amps = data.amps
+    data.watts = data.watts
     return data
   }
+}
+
+type Record = {
+  addr: number,
+  year: number,
+  month: number,
+  day: number,
+  hour: number,
+  min: number,
+  cost: number,
+  amps: number,
+  watts: number,
+  ah: number,
+  wh: number,
+  isLiveData: boolean
 }
 
 module.exports = OwlUSB
