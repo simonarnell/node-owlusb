@@ -17,6 +17,8 @@ This work is heavily influenced by Philippe Cornet's C library [eagle-owl](https
 
 The OWL+USB uses a Silicon Labs [CP210x](https://www.silabs.com/interface/usb-bridges/classic/device.cp2102) USB to UART bridge that typically requires a kernel mode driver to interface with it, largely limiting options for linux. This library instead makes use of the libusb library and my fork of the [cp2102](https://github.com/simonarnell/cp2102) library, to interface with the device in user mode. This therefore does requires libusb to be installed.
 
+_N.B. I have not had much success in installing libusb under Windows 10's WSL2. Hyper-V, [WSL2's underlying hypervisor](https://docs.microsoft.com/en-us/windows/wsl/wsl2-faq), lacks support for Host USB pass-through to VMs. Purely speculating, you may be able to lash something together using [USBIP](http://usbip.sourceforge.net) or Microsoft's [VMConnect](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/hyper-v-virtual-machine-connect)_
+
 ### Linux
 
 Install using a package manger e.g. `sudo apt install libusb` on Debian-based distros.
