@@ -1,11 +1,21 @@
 {
   "name": "node-owlusb",
   "version": "0.0.1",
-  "description": "",
+  "description": "Node.JS library for communicating with Owl +USB CM160 energy monitoring and analysis devices",
   "main": "index.js",
-  "author": "",
+  "author": "Simon Arnell",
   "license": "MIT",
   "dependencies": {
     "cp2102": "simonarnell/cp2102.git"
-  }
+  },
+  "repository": "github:simonarnell/node-owlusb",
+  "keywords": [
+    "owl",
+    "owlusb",
+    "cm160"
+  ],
+  "bugs": {
+    "url": "https://github.com/simonarnell/node-owlusb/issues"
+  },
+  "homepage": "https://github.com/simonarnell/node-owlusb#readme"
 }
