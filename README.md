@@ -19,11 +19,15 @@ The OWL+USB uses a Silicon Labs [CP210x](https://www.silabs.com/interface/usb-br
 
 ### Linux
 
-It is as simple as installing it as a dependency e.g. `sudo apt install libusb` on Debian-based distros. 
+Install using a package manger e.g. `sudo apt install libusb` on Debian-based distros.
+
+### macOS
+
+Install using a package manger e.g. Homebrew `sudo brew install libusb` or macports `sudo port install libusb`.
 
 ### Windows 
 
-On Windows its typically done using [Zadig](https://zadig.akeo.ie/).  
+On Windows you must install libusb per device using [Zadig](https://zadig.akeo.ie/).  
 
 ## Usage
 
