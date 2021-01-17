@@ -15,7 +15,7 @@ This work is heavily influenced by Philippe Cornet's C library [eagle-owl](https
 
 ## Driver
 
-The OWL+USB uses a Silicon Labs [CP210x](https://www.silabs.com/interface/usb-bridges/classic/device.cp2102) USB to UART bridge that typically requires a kernel mode driver to interface with it, largely limiting options for linux. This library instead makes use of the libusb library and my fork of the [cp2012](https://github.com/simonarnell/cp2102) library, to interface with the device in user mode. This therefore does requires libusb to be installed.
+The OWL+USB uses a Silicon Labs [CP210x](https://www.silabs.com/interface/usb-bridges/classic/device.cp2102) USB to UART bridge that typically requires a kernel mode driver to interface with it, largely limiting options for linux. This library instead makes use of the libusb library and my fork of the [cp2102](https://github.com/simonarnell/cp2102) library, to interface with the device in user mode. This therefore does requires libusb to be installed.
 
 ### Linux
 
