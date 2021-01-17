@@ -1,4 +1,3 @@
-import { OwlUSB } from './modules/owlusb.mjs';
+const OwlUSB = require('./modules/owlusb.js')
 
-const owlUSB = new OwlUSB();
-owlUSB.on('live', (record) => console.log(JSON.stringify(record)))
+module.exports = OwlUSB
