@@ -1,6 +1,6 @@
 {
   "name": "node-owlusb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node.JS library for communicating with Owl +USB CM160 energy monitoring and analysis devices",
   "main": "index.js",
   "author": "Simon Arnell",
