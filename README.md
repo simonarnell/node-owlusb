@@ -33,7 +33,7 @@ On Windows you must install libusb per device using [Zadig](https://zadig.akeo.i
 
 I have not had much success in installing libusb under Windows 10's WSL2. Hyper-V, [WSL2's underlying hypervisor](https://docs.microsoft.com/en-us/windows/wsl/wsl2-faq), lacks support for Host USB pass-through to VMs.
 
-Purely speculating, you may be able to lash something together using [USBIP](http://usbip.sourceforge.net) or Microsoft's [VMConnect](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/hyper-v-virtual-machine-connect)
+Purely speculating, you may be able to lash something together using [USB/IP](http://usbip.sourceforge.net) or Microsoft's [VMConnect](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/hyper-v-virtual-machine-connect)
 
 ## Usage
 
