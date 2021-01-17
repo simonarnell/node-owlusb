@@ -27,7 +27,7 @@ On Windows its typically done using [Zadig](https://zadig.akeo.ie/).
 
 ## Usage
 
-- Install libusb as described in the (driver)[#driver] section.
+- Install libusb as described in the [driver](#driver) section.
 - Add `node-owlusb` to your dependencies in package.json
 - Run `npm install` 
 - Use the following code snippet:
