@@ -19,7 +19,11 @@ The OWL+USB uses a Silicon Labs [CP210x](https://www.silabs.com/interface/usb-br
 
 ### Linux
 
-Install using a package manger e.g. `sudo apt install libusb libusb-dev libudev-dev` on Debian-based distros.
+- Install dependencies using a package manger e.g. `sudo apt install libusb libusb-dev libudev-dev` on Debian-based distros.
+- Add permissions to udev rules.
+  - Create a new file such as `/etc/udev/rules.d/50-owlusb.rules`.
+  - Add to this file - `SUBSYSTEM=="usb", ATTRS{idVendor}=="0fde", ATTRS{idProduct}=="ca05", GROUP="<group>", MODE="0666"` where `<group>` is the username or group of the user executing the application.
+  - Reload udev rules - `udevadm control --reload-rules`
 
 ### macOS
 
