@@ -45,10 +45,11 @@ Purely speculating, you may be able to lash something together using [USB/IP](ht
 const OwlUSB = require('node-owlusb')
 
 const owlUSB = new OwlUSB();
+owlUSB.on('ready', () => console.log('connected'))
 owlUSB.on('live', (record) => console.log(JSON.stringify(record)))
 ```
 
 This should produce JSON similar to:
 ```json
-{"addr":0,"year":2021,"month":1,"day":17,"hour":10,"min":51,"cost":12.5,"amps":"1.89","isLiveData":true,"watts":"435","ah":"0.03","wh":"7.25"}
+{"addr":0,"year":2021,"month":1,"day":17,"hour":10,"min":51,"cost":12.50,"amps":1.899,"watts":435,"ah":0.03,"wh":7.25,"isLiveData":true}
 ```
