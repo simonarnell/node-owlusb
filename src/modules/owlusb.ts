@@ -1,6 +1,6 @@
 import CP2102 from 'cp2102';
 import EventEmitter from 'events';
-import round from 'mathjs'
+import { round } from 'mathjs';
 
 const owlVendorId = 0x0fde, 
   cm160DeviceId = 0xca05,

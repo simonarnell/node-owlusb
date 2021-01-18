@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/simonarnell/node-owlusb#readme",
   "devDependencies": {
+    "@types/mathjs": "^6.0.11",
     "@types/node": "^14.14.21",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
