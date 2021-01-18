@@ -45,6 +45,7 @@ Purely speculating, you may be able to lash something together using [USB/IP](ht
 const OwlUSB = require('node-owlusb')
 
 const owlUSB = new OwlUSB();
+owlUSB.on('ready', () => console.log('connected'))
 owlUSB.on('live', (record) => console.log(JSON.stringify(record)))
 ```
 
