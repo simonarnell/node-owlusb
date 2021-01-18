@@ -1,5 +1,6 @@
 import CP2102 from 'cp2102';
 import EventEmitter from 'events';
+import round from 'mathjs'
 
 const owlVendorId = 0x0fde, 
   cm160DeviceId = 0xca05,
@@ -123,26 +124,32 @@ class OwlUSB extends EventEmitter {
   }
 
   decodeWord(word : Buffer) : Record {
-    let data : Record = {
-      addr : 0,
-      year : word[1]+2000,
-      month : word[2],
-      day : word[3],
-      hour : word[4],
-      min : word[5],
-      cost : (word[6]+(word[7]<<8))/100.0,
-      amps : (word[8]+(word[9]<<8))*0.07,
-      watts: 0,
-      ah: 0,
-      wh: 0,
-      isLiveData : (word[0] == frameCodes.LIVE) ? true : false
+    let addr: number = 0,
+      year: number = word[1]+2000,
+      month: number = word[2],
+      day: number = word[3],
+      hour: number = word[4],
+      min: number = word[5],
+      cost: number = round((word[6]+(word[7]<<8))/100.0,2),
+      amps: number = (word[8]+(word[9]<<8))*0.07,
+      watts: number = amps * volt,
+      ah: number = amps/60,
+      wh: number = watts/60,
+      isLiveData: boolean = (word[0] == frameCodes.LIVE) ? true : false
+    return {
+      addr, 
+      year, 
+      month, 
+      day, 
+      hour, 
+      min, 
+      cost, 
+      amps: round(amps, 3), 
+      watts: round(watts), 
+      ah: round(ah, 2), 
+      wh: round(wh, 2),
+      isLiveData
     }
-    data.watts = data.amps * volt 
-    data.ah = (data.amps/60)
-    data.wh = (data.watts/60)
-    data.amps = data.amps
-    data.watts = data.watts
-    return data
   }
 }
 
