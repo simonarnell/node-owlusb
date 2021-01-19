@@ -6,7 +6,7 @@
   "author": "Simon Arnell",
   "license": "MIT",
   "dependencies": {
-    "cp2102": "simonarnell/cp2102.git",
+    "cp2102": "simonarnell/cp2102#rpi-fixes",
     "mathjs": "^9.0.0"
   },
   "repository": "github:simonarnell/node-owlusb",
