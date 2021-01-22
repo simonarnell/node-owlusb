@@ -46,7 +46,7 @@ Purely speculating, you may be able to lash something together using [USB/IP](ht
 - Run `npm install` 
 - Use the following code snippet:
 ```javascript
-const OwlUSB = require('node-owlusb')
+const OwlUSB = require('node-owlusb').default
 
 const owlUSB = new OwlUSB();
 owlUSB.on('ready', () => console.log('connected'))
