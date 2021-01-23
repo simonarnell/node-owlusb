@@ -116,7 +116,7 @@ export default class OwlUSB extends EventEmitter {
     }
   }
 
-  decodeWord(word : Buffer) : EnergyUsageRecord {
+  decodeWord(word : Buffer) : EnergyConsumptionRecord {
     const addr = 0,
       year = word[1]+2000,
       month = word[2],
@@ -146,7 +146,7 @@ export default class OwlUSB extends EventEmitter {
   }
 }
 
-type EnergyUsageRecord = {
+export type EnergyConsumptionRecord = {
   addr: number,
   year: number,
   month: number,
