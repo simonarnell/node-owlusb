@@ -71,7 +71,11 @@ export default class OwlUSB extends EventEmitter {
       const wordCount = frame.length / wordLength;
       for(let i = 0; i < wordCount; i++) {
         const word = frame.slice(i * wordLength, (i + 1) * wordLength)
-        this.processWord(word)
+        try {
+          this.processWord(word)
+        } catch (err) {
+          console.error(`Error processing word ${word} - ${err}`)
+        }
       }
     })
     this.connection.on('ready', () => this.emit('ready'))
